@@ -1,6 +1,8 @@
 <?php
-    class Model
-    {
+namespace AHT\Core;
 
-    }
+class Model
+{
+
+}
 ?>

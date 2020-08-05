@@ -1,4 +1,7 @@
 <?php
+namespace AHT\Config;
+
+use PDO;
 
 class Database
 {

@@ -1,0 +1,17 @@
+{
+    "name": "xuanvinh/mvc",
+    "description": "Project MVC cua AHT",
+    "authors": [
+        {
+            "name": "XuanVinh",
+            "email": "winxuanvinh98@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AHT\\": "/"
+         }
+    },
+    "minimum-stability": "beta",
+    "require": {}
+}

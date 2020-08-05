@@ -1,4 +1,9 @@
 <?php
+namespace AHT\Controllers;
+
+use AHT\Core\Controller;
+use AHT\Models\Task;
+
 class tasksController extends Controller
 {
     function index()
