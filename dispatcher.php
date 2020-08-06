@@ -13,17 +13,22 @@ class Dispatcher
         
         Router::parse($this->request->url, $this->request);
         
-        $controller = $this->loadController();
+        $controller = $this->loadModelController();
 
         call_user_func_array([$controller, $this->request->action], $this->request->params);
     }
 
-    public function loadController()
+    public function loadModelController()
     {
         $name = $this->request->controller . "Controller";
         $nameClass = 'AHT\Controllers\\'. $this->request->controller . "Controller";
-        $file = ROOT . 'Controllers/' . $name . '.php';
-        require($file);
+
+        $fileModel = ROOT . 'Models/'. ucfirst(str_replace('Controller', '', $name)) .'.php';
+        $fileController = ROOT . 'Controllers/' . $name . '.php';
+
+        require($fileModel);
+        require($fileController);
+        
         $controller = new $nameClass;
         return $controller;
     }

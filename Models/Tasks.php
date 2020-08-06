@@ -3,6 +3,7 @@ namespace AHT\Models;
 
 use AHT\Core\Model;
 use AHT\Config\Database;
+use Doctrine\ORM\Mapping as ORM;
 
 class Task extends Model
 {
