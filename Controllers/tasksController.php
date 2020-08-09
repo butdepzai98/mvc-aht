@@ -8,8 +8,8 @@ class tasksController extends Controller
 {
     function index()
     {
-        $tasks = new Task();
-        $d['tasks'] = $tasks->showAllTasks();
+        $d["tasks"] = Task::all()->toArray();
+
         $this->set($d);
         $this->render("index");
     }
@@ -18,8 +18,11 @@ class tasksController extends Controller
     {
         if (isset($_POST["title"]))
         {
-            $task= new Task();
-            if ($task->create($_POST["title"], $_POST["description"]))
+            $task = new Task();
+            $task->title = $_POST["title"];
+            $task->description = $_POST["description"];
+
+            if ($task->save())
             {
                 header("Location: " . WEBROOT . "tasks/index");
             }
@@ -29,13 +32,15 @@ class tasksController extends Controller
 
     function edit($id)
     {
-        $task= new Task();
-
-        $d["task"] = $task->showTask($id);
+        $d['task'] = Task::find($id)->toArray();
 
         if (isset($_POST["title"]))
         {
-            if ($task->edit($id, $_POST["title"], $_POST["description"]))
+            $task = Task::find($id);
+            $task->title = $_POST["title"];
+            $task->description = $_POST["description"];
+
+            if ($task->save())
             {
                 header("Location: " . WEBROOT . "tasks/index");
             }
@@ -46,8 +51,8 @@ class tasksController extends Controller
 
     function delete($id)
     {
-        $task = new Task();
-        if ($task->delete($id))
+        $task = Task::find($id);
+        if ($task->delete())
         {
             header("Location: " . WEBROOT . "tasks/index");
         }

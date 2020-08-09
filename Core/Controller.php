@@ -28,6 +28,7 @@ class Controller
         }
     }
 
+
     private function secure_input($data)
     {
         $data = trim($data);

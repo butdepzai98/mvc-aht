@@ -1,20 +1,26 @@
 <?php
 namespace AHT\Config;
 
-use PDO;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Database
 {
-    private static $bdd = null;
+    public function __construct() 
+    {
+        $capsule = new Capsule;    
+        $capsule->addConnection([
+            'driver'    => 'mysql',
+            'host'      => 'localhost',
+            'database'  => 'mvc_aht',
+            'username'  => 'root',
+            'password'  => '',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+        ]);
 
-    private function __construct() {
-    }
-
-    public static function getBdd() {
-        if(is_null(self::$bdd)) {
-            self::$bdd = new PDO("mysql:host=localhost;dbname=mvc_aht", 'root', '');
-        }
-        return self::$bdd;
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
     }
 }
 ?>
